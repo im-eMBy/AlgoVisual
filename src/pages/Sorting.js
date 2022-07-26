@@ -1,14 +1,14 @@
 import { Board } from "../components/Sorting/Board";
 import { Buttons } from "../components/Sorting/Buttons";
-import { AppContextProvider } from "../context/AppContext";
+import { SortingContextProvider } from "../context/SortingContext";
 
 export function Sorting() {
   return (
-    <AppContextProvider>
+    <SortingContextProvider>
       <main>
         <Board></Board>
         <Buttons></Buttons>
       </main>
-    </AppContextProvider>
+    </SortingContextProvider>
   );
 }

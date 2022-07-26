@@ -4,7 +4,8 @@ export async function insertionSort(
   array,
   setArray,
   setMarkedIdx,
-  abortController
+  abortController,
+  delay
 ) {
   const copyArray = [...array];
   for (let i = 1; i < copyArray.length; i++) {
@@ -18,7 +19,7 @@ export async function insertionSort(
       if (abortController.current) return;
       setArray(copyArray);
       setMarkedIdx([i, j]);
-      await stopExecution(20);
+      await stopExecution(delay);
     }
   }
   return copyArray;

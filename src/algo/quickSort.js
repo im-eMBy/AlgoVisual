@@ -5,7 +5,8 @@ export async function quickSort(
   array,
   setArray,
   setMarkedIdx,
-  abortController
+  abortController,
+  delay
 ) {
   await quickSortRecursion(
     array,
@@ -13,7 +14,8 @@ export async function quickSort(
     array.length - 1,
     setArray,
     setMarkedIdx,
-    abortController
+    abortController,
+    delay
   );
   return array;
 }
@@ -23,7 +25,8 @@ async function quickSortRecursion(
   stop,
   setArray,
   setMarkedIdx,
-  abortController
+  abortController,
+  delay
 ) {
   if (start >= stop) return;
   if (abortController.current) return;
@@ -39,7 +42,7 @@ async function quickSortRecursion(
     if (abortController.current) return;
     setArray([...array]);
     setMarkedIdx([start, leftIdx, rightIdx]);
-    await stopExecution(20);
+    await stopExecution(delay);
   }
   arraySwap(start, rightIdx, array);
   await quickSortRecursion(
@@ -48,7 +51,8 @@ async function quickSortRecursion(
     rightIdx - 1,
     setArray,
     setMarkedIdx,
-    abortController
+    abortController,
+    delay
   );
   await quickSortRecursion(
     array,
@@ -56,6 +60,7 @@ async function quickSortRecursion(
     stop,
     setArray,
     setMarkedIdx,
-    abortController
+    abortController,
+    delay
   );
 }

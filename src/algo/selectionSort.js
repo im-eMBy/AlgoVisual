@@ -4,7 +4,8 @@ export async function selectionSort(
   array,
   setArray,
   setMarkedIdx,
-  abortController
+  abortController,
+  delay
 ) {
   const copyArray = [...array];
   for (let i = 0; i < copyArray.length - 1; i++) {
@@ -19,7 +20,7 @@ export async function selectionSort(
       if (abortController.current) return;
       setArray(copyArray);
       setMarkedIdx([i, j, minIndex]);
-      await stopExecution(20);
+      await stopExecution(delay);
     }
     copyArray[minIndex] = copyArray[i];
     copyArray[i] = min;
@@ -27,7 +28,7 @@ export async function selectionSort(
     if (abortController.current) return;
     setArray(copyArray);
     setMarkedIdx([i]);
-    await stopExecution(20);
+    await stopExecution(delay);
   }
   return copyArray;
 }
