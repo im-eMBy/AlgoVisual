@@ -1,48 +1,55 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { SortingContext } from "../../context/SortingContext";
+import { capitalizeFirstLetter } from "../../utilis/capitalizeFirstLetter";
 
 export function AlgoChoice() {
-  const { algo, setAlgo } = useContext(SortingContext);
+  const algorithmsOn2 = useMemo(() => ["insertion", "selection"], []);
+  const algorithmsOnLogn = useMemo(() => ["quick"], []);
+  const { algo, setAlgo, dataSize } = useContext(SortingContext);
   const changeAlgo = (ev) => {
     setAlgo(ev.target.value);
   };
 
+  const getButtons = (algorithms) => {
+    return algorithms.map((a) => (
+      <div className="algo-selection-option" key={a}>
+        <input
+          id={a + "-radio"}
+          name="algo"
+          type="radio"
+          value={a}
+          onChange={changeAlgo}
+          checked={algo === a}
+        ></input>
+        <label
+          htmlFor={a + "-radio"}
+          className={algo === a ? "prime-button" : "sec-button"}
+        >
+          {capitalizeFirstLetter(a)}
+        </label>
+      </div>
+    ));
+  };
+
   return (
     <div className="algo-selection">
-      <div className="algo-selection-row">
+      <div className="algo-selection-group">
         <p>O(N^2)</p>
-        <input
-          id="insertion-radio"
-          name="algo"
-          type="radio"
-          value="insertion"
-          onChange={changeAlgo}
-          checked={algo === "insertion"}
-        ></input>
-        <label htmlFor="insertion-radio">Insertion</label>
-        <input
-          id="selection-radio"
-          name="algo"
-          type="radio"
-          value="selection"
-          onChange={changeAlgo}
-          checked={algo === "selection"}
-        ></input>
-        <label htmlFor="selection-radio">Selection</label>
+        {dataSize !== 500 ? (
+          getButtons(algorithmsOn2)
+        ) : (
+          <p className="p-info">
+            Not available
+            <br />
+            aprox. visualization time: ~8 minutes
+          </p>
+        )}
       </div>
-      <div className="algo-selection-row">
+      <div className="algo-selection-group">
         <p>O(NLog(N))</p>
-        <input
-          id="quick-radio"
-          name="algo"
-          type="radio"
-          value="quick"
-          onChange={changeAlgo}
-          checked={algo === "quick"}
-        ></input>
-        <label htmlFor="quick-radio">Quick</label>
+        {getButtons(algorithmsOnLogn)}
       </div>
-      <div className="algo-selection-row">
+      <div className="algo-selection-group">
         <p>O(N)</p>
         <input
           id="radix-radio"
@@ -52,7 +59,12 @@ export function AlgoChoice() {
           onChange={changeAlgo}
           checked={algo === "radix"}
         ></input>
-        <label htmlFor="radix-radio">Radix</label>
+        <label
+          htmlFor="radix-radio"
+          className={algo === "radix" ? "prime-button" : "sec-button"}
+        >
+          Radix
+        </label>
       </div>
     </div>
   );

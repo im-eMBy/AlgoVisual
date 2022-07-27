@@ -1,11 +1,19 @@
-.board {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-  justify-content: center;
+.prime-button {
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid #fb8b24;
+  padding: 5px 10px;
+  transition-property: background;
+  transition-duration: 0.3s;
+  color: #ffffff;
+  background-color: #fb8b24;
 }
-.visual-element {
-  width: 5px;
-  border-radius: 4px;
-  background-color: blue;
+.sec-button {
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid #fb8b24;
+  padding: 5px 10px;
+  transition-property: background;
+  transition-duration: 0.3s;
+  background-color: transparent;
 }

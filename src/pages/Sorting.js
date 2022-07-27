@@ -1,3 +1,4 @@
+import "../css/sorting.css";
 import { Board } from "../components/Sorting/Board";
 import { Buttons } from "../components/Sorting/Buttons";
 import { SortingContextProvider } from "../context/SortingContext";

@@ -18,12 +18,29 @@ export function Buttons() {
       <div className="sort-info">
         <p>{isSorting ? "Sorting..." : null}</p>
       </div>
-      <AlgoChoice />
-      <DataSizeChoice />
       <div className="sort-controlls">
-        <button onClick={startSorting}>Start</button>
-        <button onClick={stopSorting}>Stop</button>
-        <button onClick={generateData}>Generate Data</button>
+        {isSorting ? null : (
+          <button className="prime-button" onClick={startSorting}>
+            Start
+          </button>
+        )}
+        {isSorting ? (
+          <button className="prime-button" onClick={stopSorting}>
+            Stop
+          </button>
+        ) : null}
+        {isSorting ? null : (
+          <button className="sec-button" onClick={generateData}>
+            Generate Data
+          </button>
+        )}
+      </div>
+      <div
+        className="sort-config"
+        style={isSorting ? { visibility: "hidden" } : null}
+      >
+        <AlgoChoice />
+        <DataSizeChoice />
       </div>
     </div>
   );

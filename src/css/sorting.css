@@ -1,0 +1,66 @@
+.board {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.visual-element {
+  background-color: #000000;
+}
+
+.sort-controlls {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.sort-controlls button {
+  font-size: large;
+}
+
+.sort-config {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.algo-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.algo-selection-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.algo-selection input {
+  display: none;
+}
+.algo-selection label {
+  display: block;
+}
+
+.data-size-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.data-size-choice input {
+  display: none;
+}
+.data-size-choice label {
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.p-info {
+  text-align: center;
+  font-size: small;
+}
