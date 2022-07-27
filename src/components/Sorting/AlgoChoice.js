@@ -3,7 +3,7 @@ import { SortingContext } from "../../context/SortingContext";
 import { capitalizeFirstLetter } from "../../utilis/capitalizeFirstLetter";
 
 export function AlgoChoice() {
-  const algorithmsOn2 = useMemo(() => ["insertion", "selection"], []);
+  const algorithmsOn2 = useMemo(() => ["insertion", "selection", "bubble"], []);
   const algorithmsOnLogn = useMemo(() => ["quick"], []);
   const { algo, setAlgo, dataSize } = useContext(SortingContext);
   const changeAlgo = (ev) => {
