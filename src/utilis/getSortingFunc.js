@@ -3,6 +3,7 @@ import { insertionSort } from "../algo/insertionSort";
 import { selectionSort } from "../algo/selectionSort";
 import { quickSort } from "../algo/quickSort";
 import { bubbleSort } from "../algo/bubbleSort";
+import { mergeSort } from "../algo/mergeSort";
 
 export function getSortingFunc(algoName) {
   switch (algoName) {
@@ -16,6 +17,8 @@ export function getSortingFunc(algoName) {
       return selectionSort;
     case "quick":
       return quickSort;
+    case "merge":
+      return mergeSort;
     default:
       break;
   }

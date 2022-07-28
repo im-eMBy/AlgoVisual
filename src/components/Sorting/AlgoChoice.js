@@ -4,7 +4,7 @@ import { capitalizeFirstLetter } from "../../utilis/capitalizeFirstLetter";
 
 export function AlgoChoice() {
   const algorithmsOn2 = useMemo(() => ["insertion", "selection", "bubble"], []);
-  const algorithmsOnLogn = useMemo(() => ["quick"], []);
+  const algorithmsOnLogn = useMemo(() => ["quick", "merge"], []);
   const { algo, setAlgo, dataSize } = useContext(SortingContext);
   const changeAlgo = (ev) => {
     setAlgo(ev.target.value);
