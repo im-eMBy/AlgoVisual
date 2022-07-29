@@ -1,13 +1,13 @@
 import "../css/sorting.css";
-import { Board } from "../components/Sorting/Board";
 import { Buttons } from "../components/Sorting/Buttons";
 import { SortingContextProvider } from "../context/SortingContext";
+import { BoardController } from "../components/Sorting/BoardController";
 
 export function Sorting() {
   return (
     <SortingContextProvider>
       <main>
-        <Board></Board>
+        <BoardController></BoardController>
         <Buttons></Buttons>
       </main>
     </SortingContextProvider>

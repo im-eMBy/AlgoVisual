@@ -4,7 +4,7 @@ export async function mergeSort(
   array,
   setArray,
   setMarkedIdx,
-  abortController,
+  shouldRun,
   delay
 ) {
   const mainArr = [...array];
@@ -18,7 +18,7 @@ export async function mergeSort(
     visualArr,
     setArray,
     setMarkedIdx,
-    abortController,
+    shouldRun,
     delay
   );
   setArray(mainArr);
@@ -32,11 +32,11 @@ async function mergeSortRecursion(
   visualArr,
   setArray,
   setMarkedIdx,
-  abortController,
+  shouldRun,
   delay
 ) {
   if (start === stop) return;
-  if (abortController.current) return;
+  if (!shouldRun.current) return;
   const pivot = Math.floor((start + stop) / 2);
   await mergeSortRecursion(
     copyArr,
@@ -46,7 +46,7 @@ async function mergeSortRecursion(
     visualArr,
     setArray,
     setMarkedIdx,
-    abortController,
+    shouldRun,
     delay
   );
   await mergeSortRecursion(
@@ -57,7 +57,7 @@ async function mergeSortRecursion(
     visualArr,
     setArray,
     setMarkedIdx,
-    abortController,
+    shouldRun,
     delay
   );
   let i = start;
@@ -75,7 +75,7 @@ async function mergeSortRecursion(
     }
     i++;
     //visualize
-    if (abortController.current) return;
+    if (!shouldRun.current) return;
     setArray([...visualArr]);
     setMarkedIdx([i, j, k]);
     await stopExecution(delay);
@@ -86,7 +86,7 @@ async function mergeSortRecursion(
     j++;
     i++;
     //visualize
-    if (abortController.current) return;
+    if (!shouldRun.current) return;
     setArray([...visualArr]);
     setMarkedIdx([i, j, k]);
     await stopExecution(delay);
@@ -97,7 +97,7 @@ async function mergeSortRecursion(
     k++;
     i++;
     //visualize
-    if (abortController.current) return;
+    if (!shouldRun.current) return;
     setArray([...visualArr]);
     setMarkedIdx([i, j, k]);
     await stopExecution(delay);

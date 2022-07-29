@@ -4,7 +4,7 @@ export async function bubbleSort(
   array,
   setArray,
   setMarkedIdx,
-  abortController,
+  shouldRun,
   delay
 ) {
   const copyArray = [...array];
@@ -17,7 +17,7 @@ export async function bubbleSort(
         copyArray[j + 1] = curr;
       }
       //visualize
-      if (abortController.current) return;
+      if (!shouldRun.current) return;
       setArray(copyArray);
       setMarkedIdx([j + 1]);
       await stopExecution(delay);

@@ -4,7 +4,7 @@ export async function radixSort(
   array,
   setArray,
   setMarkedIdx,
-  abortController,
+  shouldRun,
   delay
 ) {
   const digits = getMaxDigitCounter(array);
@@ -19,7 +19,7 @@ export async function radixSort(
       const digit = getDigit(currSorted[j], i);
       counts[digit]++;
       //visualize
-      if (abortController.current) return;
+      if (!shouldRun.current) return;
       setMarkedIdx([j]);
       await stopExecution(delay);
     }
@@ -36,7 +36,7 @@ export async function radixSort(
       partlySorted[index] = number;
       counts[digit]--;
       //visualize
-      if (abortController.current) return;
+      if (!shouldRun.current) return;
       displayArray[index] = number;
       setArray(displayArray);
       setMarkedIdx([j, index]);
