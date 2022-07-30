@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SortingContext } from "../../context/SortingContext";
 import { AlgoChoice } from "./AlgoChoice";
 import { DataSizeChoice } from "./DataSizeChoice";
+import { RangeChoice } from "./RangeChoice";
 
 export function Buttons() {
   const { isSorting, setIsSorting, generateData } = useContext(SortingContext);
@@ -41,6 +42,7 @@ export function Buttons() {
       >
         <AlgoChoice />
         <DataSizeChoice />
+        <RangeChoice />
       </div>
     </div>
   );

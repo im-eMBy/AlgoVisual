@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { getRandomArray } from "../utilis/getRandomArray";
 
 export const SortingContext = React.createContext();
@@ -6,31 +6,46 @@ export const SortingContext = React.createContext();
 export function SortingContextProvider({ children }) {
   const [isSorting, setIsSorting] = useState(false);
   const [algo, setAlgo] = useState("insertion");
-  const [dataSize, setDataSize] = useState(25);
-  const [initialArray, setInitialArray] = useState(
-    getRandomArray(1, 9999, dataSize)
-  );
-
-  useEffect(() => {
-    setInitialArray(getRandomArray(1, 9999, dataSize));
-  }, [dataSize]);
+  const [arrayConfig, setArrayConfig] = useState({
+    dataSize: 25,
+    range: 999,
+    initialArray: getRandomArray(1, 999, 25),
+  });
 
   const ctx = useMemo(() => {
     const generateData = () => {
-      setInitialArray(getRandomArray(1, 9999, dataSize));
+      setArrayConfig((prev) => ({
+        dataSize: prev.dataSize,
+        range: prev.range,
+        initialArray: getRandomArray(1, prev.range, prev.dataSize),
+      }));
+    };
+    const setRange = (value) => {
+      setArrayConfig((prev) => ({
+        dataSize: prev.dataSize,
+        range: value,
+        initialArray: getRandomArray(1, value, prev.dataSize),
+      }));
+    };
+    const setDataSize = (value) => {
+      setArrayConfig((prev) => ({
+        dataSize: value,
+        range: prev.range,
+        initialArray: getRandomArray(1, prev.range, value),
+      }));
     };
     return {
+      arrayConfig,
+      setArrayConfig,
       isSorting,
       setIsSorting,
       algo,
       setAlgo,
-      dataSize,
-      setDataSize,
-      initialArray,
-      setInitialArray,
       generateData,
+      setRange,
+      setDataSize,
     };
-  }, [algo, dataSize, isSorting, initialArray]);
+  }, [isSorting, algo, arrayConfig]);
 
   return (
     <SortingContext.Provider value={ctx}>{children}</SortingContext.Provider>

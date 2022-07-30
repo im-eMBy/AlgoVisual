@@ -4,10 +4,12 @@ import { getSortingFunc } from "../../utilis/getSortingFunc";
 import { BoardUI } from "./BoardUI";
 
 export function BoardController() {
-  const { algo, dataSize, isSorting, setIsSorting, initialArray } =
+  const { algo, isSorting, setIsSorting, arrayConfig } =
     useContext(SortingContext);
   const isRunning = useRef(false);
-  const [array, setArray] = useState(initialArray);
+  const [array, setArray] = useState([]);
+  const [dataSize, setDataSize] = useState(0);
+  const [range, setRange] = useState(0);
   const [markedIdx, setMarkedIdx] = useState([]);
 
   const startSorting = useCallback(async () => {
@@ -26,8 +28,10 @@ export function BoardController() {
   }, []);
 
   useEffect(() => {
-    setArray(initialArray);
-  }, [initialArray]);
+    setArray(arrayConfig.initialArray);
+    setDataSize(arrayConfig.dataSize);
+    setRange(arrayConfig.range);
+  }, [arrayConfig]);
 
   useEffect(() => {
     if (!isSorting && isRunning.current) {
@@ -42,6 +46,11 @@ export function BoardController() {
   }, [isSorting, startSorting, stopSorting]);
 
   return (
-    <BoardUI array={array} markedIdx={markedIdx} dataSize={dataSize}></BoardUI>
+    <BoardUI
+      array={array}
+      markedIdx={markedIdx}
+      dataSize={dataSize}
+      range={range}
+    />
   );
 }

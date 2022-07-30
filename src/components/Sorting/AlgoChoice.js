@@ -5,7 +5,8 @@ import { capitalizeFirstLetter } from "../../utilis/capitalizeFirstLetter";
 export function AlgoChoice() {
   const algorithmsOn2 = useMemo(() => ["insertion", "selection", "bubble"], []);
   const algorithmsOnLogn = useMemo(() => ["quick", "merge"], []);
-  const { algo, setAlgo, dataSize } = useContext(SortingContext);
+  const algorithmsOnk = useMemo(() => ["radix"], []);
+  const { algo, setAlgo, arrayConfig } = useContext(SortingContext);
   const changeAlgo = (ev) => {
     setAlgo(ev.target.value);
   };
@@ -33,38 +34,26 @@ export function AlgoChoice() {
 
   return (
     <div className="algo-selection">
+      <p>Choose algorithm:</p>
       <div className="algo-selection-group">
-        <p>O(N^2)</p>
-        {dataSize !== 500 ? (
+        <p>O(n^2)</p>
+        {arrayConfig.dataSize <= 100 ? (
           getButtons(algorithmsOn2)
         ) : (
           <p className="p-info">
             Not available
             <br />
-            aprox. visualization time: ~8 minutes
+            Too long visualization time
           </p>
         )}
       </div>
       <div className="algo-selection-group">
-        <p>O(NLog(N))</p>
+        <p>O(nLog(n))</p>
         {getButtons(algorithmsOnLogn)}
       </div>
       <div className="algo-selection-group">
-        <p>O(N)</p>
-        <input
-          id="radix-radio"
-          name="algo"
-          type="radio"
-          value="radix"
-          onChange={changeAlgo}
-          checked={algo === "radix"}
-        ></input>
-        <label
-          htmlFor="radix-radio"
-          className={algo === "radix" ? "prime-button" : "sec-button"}
-        >
-          Radix
-        </label>
+        <p>O(nk)</p>
+        {getButtons(algorithmsOnk)}
       </div>
     </div>
   );

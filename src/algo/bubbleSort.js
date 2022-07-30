@@ -9,6 +9,7 @@ export async function bubbleSort(
 ) {
   const copyArray = [...array];
   for (let i = 0; i < copyArray.length - 1; i++) {
+    console.time();
     for (let j = 0; j < copyArray.length - 1 - i; j++) {
       const next = copyArray[j + 1];
       const curr = copyArray[j];
@@ -22,6 +23,7 @@ export async function bubbleSort(
       setMarkedIdx([j + 1]);
       await stopExecution(delay);
     }
+    console.timeEnd();
   }
   return copyArray;
 }

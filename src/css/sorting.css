@@ -45,16 +45,19 @@
   display: block;
 }
 
-.data-size-choice {
+.data-size-choice,
+.range-choice {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
-.data-size-choice input {
+.data-size-choice input,
+.range-choice input {
   display: none;
 }
-.data-size-choice label {
+.data-size-choice label,
+.range-choice label {
   text-align: center;
   width: 100%;
   display: block;
