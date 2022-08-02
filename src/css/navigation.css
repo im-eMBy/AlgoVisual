@@ -1,0 +1,12 @@
+.navigation {
+  padding: 10px 25px;
+  background-color: #000000;
+}
+.navigation ul {
+  display: flex;
+  gap: 15px;
+}
+.navigation a {
+  color: #ffffff;
+  text-decoration: none;
+}
