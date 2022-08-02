@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useRef, useCallback } from "react";
 import { SortingContext } from "../../context/SortingContext";
-import { getSortingFunc } from "../../utilis/getSortingFunc";
+import { getSortingFunc } from "../../algo/sorting/index";
 import { BoardUI } from "./BoardUI";
 
 export function BoardController() {

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { SortingContext } from "../../context/SortingContext";
-import { AlgoChoice } from "./AlgoChoice";
-import { DataSizeChoice } from "./DataSizeChoice";
-import { RangeChoice } from "./RangeChoice";
+import { AlgoSelection } from "./AlgoSelection";
+import { DataSizeSelection } from "./DataSizeSelection";
+import { RangeSelection } from "./RangeSelection";
 
 export function Buttons() {
   const { isSorting, setIsSorting, generateData } = useContext(SortingContext);
@@ -40,9 +40,9 @@ export function Buttons() {
         className="sort-config"
         style={isSorting ? { visibility: "hidden" } : null}
       >
-        <AlgoChoice />
-        <DataSizeChoice />
-        <RangeChoice />
+        <AlgoSelection />
+        <DataSizeSelection />
+        <RangeSelection />
       </div>
     </div>
   );

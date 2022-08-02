@@ -1,5 +1,5 @@
-import { stopExecution } from "../utilis/stopExecution";
-import { arraySwap } from "../utilis/arraySwap";
+import { stopExecution } from "../../utilis/stopExecution";
+import { arraySwap } from "../../utilis/arraySwap";
 
 export async function quickSort(
   array,

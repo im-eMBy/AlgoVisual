@@ -2,9 +2,9 @@ import { useContext, useMemo } from "react";
 import { SortingContext } from "../../context/SortingContext";
 import { capitalizeFirstLetter } from "../../utilis/capitalizeFirstLetter";
 
-export function AlgoChoice() {
+export function AlgoSelection() {
   const algorithmsOn2 = useMemo(() => ["insertion", "selection", "bubble"], []);
-  const algorithmsOnLogn = useMemo(() => ["quick", "merge"], []);
+  const algorithmsOnLogn = useMemo(() => ["quick", "merge", "shell"], []);
   const algorithmsOnk = useMemo(() => ["radix"], []);
   const { algo, setAlgo, arrayConfig } = useContext(SortingContext);
   const changeAlgo = (ev) => {

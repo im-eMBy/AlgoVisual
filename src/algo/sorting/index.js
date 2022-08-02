@@ -1,9 +1,10 @@
-import { radixSort } from "../algo/radixSort";
-import { insertionSort } from "../algo/insertionSort";
-import { selectionSort } from "../algo/selectionSort";
-import { quickSort } from "../algo/quickSort";
-import { bubbleSort } from "../algo/bubbleSort";
-import { mergeSort } from "../algo/mergeSort";
+import { radixSort } from "./radixSort";
+import { insertionSort } from "./insertionSort";
+import { selectionSort } from "./selectionSort";
+import { quickSort } from "./quickSort";
+import { bubbleSort } from "./bubbleSort";
+import { mergeSort } from "./mergeSort";
+import { shellSort } from "./shellSort";
 
 export function getSortingFunc(algoName) {
   switch (algoName) {
@@ -19,6 +20,8 @@ export function getSortingFunc(algoName) {
       return quickSort;
     case "merge":
       return mergeSort;
+    case "shell":
+      return shellSort;
     default:
       break;
   }

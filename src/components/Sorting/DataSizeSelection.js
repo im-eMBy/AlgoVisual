@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 import { SortingContext } from "../../context/SortingContext";
 
-export function DataSizeChoice() {
+export function DataSizeSelection() {
   const { arrayConfig, setDataSize, algo, setAlgo } =
     useContext(SortingContext);
   const dataSizes = useMemo(
@@ -26,7 +26,7 @@ export function DataSizeChoice() {
     <div className="data-size-choice">
       <p>Data size:</p>
       {dataSizes.map((s, i) => (
-        <div key={i}>
+        <div key={i} className="data-size-option">
           <input
             id={s.label + "-data-radio"}
             name="data-size"

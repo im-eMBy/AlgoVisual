@@ -1,4 +1,4 @@
-import { stopExecution } from "../utilis/stopExecution";
+import { stopExecution } from "../../utilis/stopExecution";
 
 export async function insertionSort(
   array,
