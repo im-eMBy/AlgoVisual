@@ -17,7 +17,7 @@ export async function shellSort(
       let el2Idx = i - interval;
       //visualize
       if (!shouldRun.current) return;
-      setArray(copyArray);
+      setArray([...copyArray]);
       setMarkedIdx([elIdx, el2Idx]);
       await stopExecution(delay);
       while (el < copyArray[el2Idx]) {

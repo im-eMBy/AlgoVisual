@@ -1,0 +1,59 @@
+table {
+  border-collapse: collapse;
+}
+table,
+td,
+th {
+  cursor: pointer;
+  border: 2px solid black;
+}
+th:nth-child(1) {
+  border-left: 4px solid black;
+}
+th:nth-child(3n) {
+  border-right: 4px solid black;
+}
+tr:nth-child(1) {
+  border-top: 4px solid black;
+}
+tr:nth-child(3n) {
+  border-bottom: 4px solid black;
+}
+
+.boards-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.board-container p {
+  font-size: large;
+}
+.sudoku-board {
+  border-spacing: 0;
+}
+.sudoku-board th {
+  line-height: 1em;
+  font-size: 14px;
+  width: 25px;
+  height: 25px;
+  caret-color: transparent;
+}
+.input-board-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.sudoku-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

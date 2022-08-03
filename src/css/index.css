@@ -2,3 +2,24 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
 }
+.prime-button {
+  font-size: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid #fb8b24;
+  padding: 5px 10px;
+  transition-property: background;
+  transition-duration: 0.3s;
+  color: #ffffff;
+  background-color: #fb8b24;
+}
+.sec-button {
+  font-size: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid #fb8b24;
+  padding: 5px 10px;
+  transition-property: background;
+  transition-duration: 0.3s;
+  background-color: transparent;
+}

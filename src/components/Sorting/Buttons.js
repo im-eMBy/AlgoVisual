@@ -16,9 +16,6 @@ export function Buttons() {
 
   return (
     <div>
-      <div className="sort-info">
-        <p>{isSorting ? "Sorting..." : null}</p>
-      </div>
       <div className="sort-controlls">
         {isSorting ? null : (
           <button className="prime-button" onClick={startSorting}>

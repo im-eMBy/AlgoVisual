@@ -35,12 +35,10 @@ export function BoardController() {
 
   useEffect(() => {
     if (!isSorting && isRunning.current) {
-      console.log("stoped");
       stopSorting();
       return;
     }
     if (isSorting && !isRunning.current) {
-      console.log("started");
       startSorting();
     }
   }, [isSorting, startSorting, stopSorting]);
