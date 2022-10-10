@@ -10,6 +10,11 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
+.sorting__board canvas {
+  width: 500px;
+  max-width: 100%;
+  height: 100%;
+}
 .sorting__visual-element {
   background-color: #000000;
 }

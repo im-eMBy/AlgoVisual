@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useCallback, useRef } from "react";
 import { SortingContext } from "../../context/SortingContext";
 import { SortingInterface } from "../../algo/sorting/SortingInterface";
-import { BoardUI } from "./BoardUI";
+import { Board } from "./Board";
 
 export function BoardController() {
   const { algo, isSorting, setIsSorting, arrayConfig } =
@@ -51,7 +51,7 @@ export function BoardController() {
   }, [isSorting, startSorting, stopSorting]);
 
   return (
-    <BoardUI
+    <Board
       array={array}
       markedIdx={markedIdx}
       dataSize={dataSize}
