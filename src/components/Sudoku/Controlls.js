@@ -25,7 +25,7 @@ export function Controlls() {
   };
 
   return (
-    <div className="sudoku-controls">
+    <div className="sudoku__controls">
       {isVisual ? (
         <button className="prime-button" onClick={stop}>
           Stop

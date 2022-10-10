@@ -9,18 +9,18 @@ export function Boards() {
 
   if (initialBoard === null)
     return (
-      <div className="boards-container">
+      <div className="sudoku__boards">
         <InputBoard />
       </div>
     );
   return (
-    <div className="boards-container">
-      <div className="board-container">
+    <div className="sudoku__boards">
+      <div className="sudoku__board-container">
         <p>Initial:</p>
         <BoardUi board={initialBoard} isEditable={false} />
       </div>
       {solvedBoard !== null ? (
-        <div className="board-container">
+        <div className="sudoku__board-container">
           <p>Solved:</p>
           <BoardUi board={solvedBoard} isEditable={false} />
         </div>

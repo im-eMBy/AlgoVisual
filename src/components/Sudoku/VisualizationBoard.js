@@ -42,7 +42,7 @@ export function VisualizationBoard() {
   }, [isVisual, startVisual, stopVisual]);
 
   return (
-    <div className="board-container">
+    <div className="sudoku__board-container">
       <p>Visualization:</p>
       <BoardUi
         board={board}

@@ -16,7 +16,7 @@ export function Buttons() {
 
   return (
     <div>
-      <div className="sort-controlls">
+      <div className="sorting__controlls">
         {isSorting ? null : (
           <button className="prime-button" onClick={startSorting}>
             Start
@@ -34,7 +34,7 @@ export function Buttons() {
         )}
       </div>
       <div
-        className="sort-config"
+        className="sorting__config"
         style={isSorting ? { visibility: "hidden" } : null}
       >
         <AlgoSelection />

@@ -11,10 +11,10 @@ export function RangeSelection() {
   };
 
   return (
-    <div className="range-choice">
+    <div className="sorting__config-column">
       <p>Range:</p>
       {RANGES.map((r, i) => (
-        <div key={i} className="range-option">
+        <div key={i} className="sorting__config-option">
           <input
             id={r + "-range-radio"}
             name="range"

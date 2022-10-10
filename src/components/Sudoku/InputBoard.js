@@ -65,7 +65,7 @@ export function InputBoard() {
   };
 
   return (
-    <div className="board-container">
+    <div className="sudoku__board-container">
       <p>Input board:</p>
       <BoardUi
         board={board}
@@ -74,7 +74,7 @@ export function InputBoard() {
         markedFields={markedFields}
       />
       <p>{warnMsg}</p>
-      <div className="input-board-buttons">
+      <div className="sudoku__input-buttons">
         <button className="prime-button" onClick={solve}>
           Solve
         </button>

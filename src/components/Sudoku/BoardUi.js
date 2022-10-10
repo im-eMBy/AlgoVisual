@@ -27,7 +27,7 @@ export function BoardUi({ board, markedFields, isEditable, editField }) {
   };
 
   return (
-    <table className="sudoku-board">
+    <table className="sudoku__board">
       <tbody>{renderBoard()}</tbody>
     </table>
   );

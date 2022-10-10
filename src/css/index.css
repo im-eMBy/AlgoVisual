@@ -1,3 +1,8 @@
+@import "./_reset.css";
+@import "./_navigation.css";
+@import "./_sorting.css";
+@import "./_sudoku.css";
+
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
@@ -8,7 +13,11 @@ body {
   border-radius: 10px;
   border: 2px solid #fb8b24;
   padding: 5px 10px;
+  -webkit-transition-property: background;
+  -o-transition-property: background;
   transition-property: background;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
   color: #ffffff;
   background-color: #fb8b24;
@@ -19,7 +28,11 @@ body {
   border-radius: 10px;
   border: 2px solid #fb8b24;
   padding: 5px 10px;
+  -webkit-transition-property: background;
+  -o-transition-property: background;
   transition-property: background;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
   background-color: transparent;
 }

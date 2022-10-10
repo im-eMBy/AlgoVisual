@@ -14,7 +14,7 @@ export function AlgoSelection() {
 
   const getButtons = (algorithms) => {
     return algorithms.map((a) => (
-      <div className="algo-selection-option" key={a}>
+      <div className="sorting__algo-option" key={a}>
         <input
           id={a + "-radio"}
           name="algo"
@@ -34,25 +34,25 @@ export function AlgoSelection() {
   };
 
   return (
-    <div className="algo-selection">
+    <div className="sorting__algo">
       <p>Choose algorithm:</p>
-      <div className="algo-selection-group">
+      <div className="sorting__algo-group">
         <p>O(n^2)</p>
         {arrayConfig.dataSize <= 100 ? (
           getButtons(ALGO_ON2)
         ) : (
-          <p className="p-info">
+          <p className="sorting__info">
             Not available
             <br />
             Too long visualization time
           </p>
         )}
       </div>
-      <div className="algo-selection-group">
+      <div className="sorting__algo-group">
         <p>O(nLog(n))</p>
         {getButtons(ALGO_ONLOGN)}
       </div>
-      <div className="algo-selection-group">
+      <div className="sorting__algo-group">
         <p>O(nk)</p>
         {getButtons(ALGO_ONK)}
       </div>

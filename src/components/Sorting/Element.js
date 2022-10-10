@@ -6,5 +6,5 @@ export function Element({ height, marked, width }) {
     width: width,
     backgroundColor: marked ? "#FB8B24" : undefined,
   };
-  return <div className="visual-element" style={style}></div>;
+  return <div className="sorting__visual-element" style={style}></div>;
 }

@@ -29,7 +29,6 @@ export class SortingInterface {
     this.setArray = setArray;
     this.setMarkedIdx = setMarkedIdx;
     this.sortingFunction = SORT_FUNC_MAP[functionName];
-    console.log(this.sortingFunction);
     this.runController = {
       isOn: false,
       abort() {

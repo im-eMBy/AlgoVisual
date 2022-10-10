@@ -1,4 +1,3 @@
-import "../css/sudoku.css";
 import { SudokuContextProvider } from "../context/SudokuContext";
 import { Boards } from "../components/Sudoku/Boards";
 import { Controlls } from "../components/Sudoku/Controlls";

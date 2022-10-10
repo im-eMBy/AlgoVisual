@@ -21,10 +21,10 @@ export function DataSizeSelection() {
   };
 
   return (
-    <div className="data-size-choice">
+    <div className="sorting__config-column">
       <p>Data size:</p>
       {DATA_SIZES.map((s, i) => (
-        <div key={i} className="data-size-option">
+        <div key={i} className="sorting__config-option">
           <input
             id={s.label + "-data-radio"}
             name="data-size"
