@@ -1,44 +1,51 @@
-import { useContext, useEffect, useState, useRef, useCallback } from "react";
+import { useContext, useEffect, useState, useCallback, useRef } from "react";
 import { SortingContext } from "../../context/SortingContext";
-import { getSortingFunc } from "../../algo/sorting/index";
+import { SortingInterface } from "../../algo/sorting/SortingInterface";
 import { BoardUI } from "./BoardUI";
 
 export function BoardController() {
   const { algo, isSorting, setIsSorting, arrayConfig } =
     useContext(SortingContext);
-  const isRunning = useRef(false);
   const [array, setArray] = useState([]);
   const [dataSize, setDataSize] = useState(0);
   const [range, setRange] = useState(0);
   const [markedIdx, setMarkedIdx] = useState([]);
+  const [sortingInterface, setSortingInterface] = useState();
+  const isSortingLocal = useRef(false);
 
   const startSorting = useCallback(async () => {
-    isRunning.current = true;
-    const sortingFunction = getSortingFunc(algo);
-    const delay = 1000 / dataSize;
-    console.time();
-    await sortingFunction(array, setArray, setMarkedIdx, isRunning, delay);
-    console.timeEnd();
+    const newSortingInterface = new SortingInterface(
+      [...arrayConfig.initialArray],
+      setArray,
+      setMarkedIdx,
+      1000 / dataSize,
+      algo
+    );
+    setSortingInterface(newSortingInterface);
+    isSortingLocal.current = true;
+    await newSortingInterface.start();
+    isSortingLocal.current = false;
     setIsSorting(false);
-    isRunning.current = false;
-  }, [algo, array, dataSize, setIsSorting]);
+    setSortingInterface(null);
+  }, [algo, arrayConfig.initialArray, dataSize, setIsSorting]);
 
   const stopSorting = useCallback(() => {
-    isRunning.current = false;
-  }, []);
+    sortingInterface.stop();
+  }, [sortingInterface]);
 
+  //update local array, when config in context changes
   useEffect(() => {
     setArray(arrayConfig.initialArray);
     setDataSize(arrayConfig.dataSize);
     setRange(arrayConfig.range);
   }, [arrayConfig]);
-
+  //start sorting / stop sorting, based on context 'isSorting' and local 'isSortingLocal' variables
   useEffect(() => {
-    if (!isSorting && isRunning.current) {
+    if (!isSorting && isSortingLocal.current) {
       stopSorting();
       return;
     }
-    if (isSorting && !isRunning.current) {
+    if (isSorting && !isSortingLocal.current) {
       startSorting();
     }
   }, [isSorting, startSorting, stopSorting]);

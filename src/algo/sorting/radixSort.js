@@ -1,12 +1,4 @@
-import { stopExecution } from "../../utilis/stopExecution";
-
-export async function radixSort(
-  array,
-  setArray,
-  setMarkedIdx,
-  shouldRun,
-  delay
-) {
+export async function radixSort(array, runController, visualize) {
   const digits = getMaxDigitCounter(array);
   let currSorted = [...array];
   let displayArray = [...array];
@@ -19,9 +11,8 @@ export async function radixSort(
       const digit = getDigit(currSorted[j], i);
       counts[digit]++;
       //visualize
-      if (!shouldRun.current) return;
-      setMarkedIdx([j]);
-      await stopExecution(delay);
+      if (!runController.isOn) return;
+      await visualize(displayArray, [j]);
     }
     let acc = 0;
     for (let j = 0; j < counts.length; j++) {
@@ -36,11 +27,9 @@ export async function radixSort(
       partlySorted[index] = number;
       counts[digit]--;
       //visualize
-      if (!shouldRun.current) return;
       displayArray[index] = number;
-      setArray(displayArray);
-      setMarkedIdx([j, index]);
-      await stopExecution(delay);
+      if (!runController.isOn) return;
+      await visualize(displayArray, [j, index]);
     }
     currSorted = [...partlySorted];
   }

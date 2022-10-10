@@ -1,12 +1,4 @@
-import { stopExecution } from "../../utilis/stopExecution";
-
-export async function selectionSort(
-  array,
-  setArray,
-  setMarkedIdx,
-  shouldRun,
-  delay
-) {
+export async function selectionSort(array, runController, visualize) {
   const copyArray = [...array];
   for (let i = 0; i < copyArray.length - 1; i++) {
     let min = copyArray[i];
@@ -17,18 +9,14 @@ export async function selectionSort(
         minIndex = j;
       }
       //visualize
-      if (!shouldRun.current) return;
-      setArray(copyArray);
-      setMarkedIdx([i, j, minIndex]);
-      await stopExecution(delay);
+      if (!runController.isOn) return;
+      await visualize(copyArray, [i, j, minIndex]);
     }
     copyArray[minIndex] = copyArray[i];
     copyArray[i] = min;
     //visualize
-    if (!shouldRun.current) return;
-    setArray(copyArray);
-    setMarkedIdx([i]);
-    await stopExecution(delay);
+    if (!runController.isOn) return;
+    await visualize(copyArray, [i]);
   }
   return copyArray;
 }

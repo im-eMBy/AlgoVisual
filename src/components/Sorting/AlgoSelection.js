@@ -1,11 +1,12 @@
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { SortingContext } from "../../context/SortingContext";
 import { capitalizeFirstLetter } from "../../utilis/capitalizeFirstLetter";
 
+const ALGO_ON2 = ["insertion", "selection", "bubble"];
+const ALGO_ONLOGN = ["quick", "merge", "shell"];
+const ALGO_ONK = ["radix"];
+
 export function AlgoSelection() {
-  const algorithmsOn2 = useMemo(() => ["insertion", "selection", "bubble"], []);
-  const algorithmsOnLogn = useMemo(() => ["quick", "merge", "shell"], []);
-  const algorithmsOnk = useMemo(() => ["radix"], []);
   const { algo, setAlgo, arrayConfig } = useContext(SortingContext);
   const changeAlgo = (ev) => {
     setAlgo(ev.target.value);
@@ -38,7 +39,7 @@ export function AlgoSelection() {
       <div className="algo-selection-group">
         <p>O(n^2)</p>
         {arrayConfig.dataSize <= 100 ? (
-          getButtons(algorithmsOn2)
+          getButtons(ALGO_ON2)
         ) : (
           <p className="p-info">
             Not available
@@ -49,11 +50,11 @@ export function AlgoSelection() {
       </div>
       <div className="algo-selection-group">
         <p>O(nLog(n))</p>
-        {getButtons(algorithmsOnLogn)}
+        {getButtons(ALGO_ONLOGN)}
       </div>
       <div className="algo-selection-group">
         <p>O(nk)</p>
-        {getButtons(algorithmsOnk)}
+        {getButtons(ALGO_ONK)}
       </div>
     </div>
   );

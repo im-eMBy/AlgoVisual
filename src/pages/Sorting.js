@@ -6,8 +6,8 @@ import { BoardController } from "../components/Sorting/BoardController";
 export function Sorting() {
   return (
     <SortingContextProvider>
-      <BoardController></BoardController>
-      <Buttons></Buttons>
+      <BoardController />
+      <Buttons />
     </SortingContextProvider>
   );
 }

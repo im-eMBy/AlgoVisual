@@ -1,15 +1,6 @@
-import { stopExecution } from "../../utilis/stopExecution";
-
-export async function bubbleSort(
-  array,
-  setArray,
-  setMarkedIdx,
-  shouldRun,
-  delay
-) {
+export async function bubbleSort(array, runController, visualize) {
   const copyArray = [...array];
   for (let i = 0; i < copyArray.length - 1; i++) {
-    console.time();
     for (let j = 0; j < copyArray.length - 1 - i; j++) {
       const next = copyArray[j + 1];
       const curr = copyArray[j];
@@ -18,12 +9,9 @@ export async function bubbleSort(
         copyArray[j + 1] = curr;
       }
       //visualize
-      if (!shouldRun.current) return;
-      setArray(copyArray);
-      setMarkedIdx([j + 1]);
-      await stopExecution(delay);
+      if (!runController.isOn) return;
+      await visualize(copyArray, [j + 1]);
     }
-    console.timeEnd();
   }
   return copyArray;
 }

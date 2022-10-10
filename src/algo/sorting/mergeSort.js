@@ -1,12 +1,4 @@
-import { stopExecution } from "../../utilis/stopExecution";
-
-export async function mergeSort(
-  array,
-  setArray,
-  setMarkedIdx,
-  shouldRun,
-  delay
-) {
+export async function mergeSort(array, runController, visualize) {
   const mainArr = [...array];
   const copyArr = [...array];
   const visualArr = [...array];
@@ -16,12 +8,10 @@ export async function mergeSort(
     0,
     array.length - 1,
     visualArr,
-    setArray,
-    setMarkedIdx,
-    shouldRun,
-    delay
+    runController,
+    visualize
   );
-  setArray(mainArr);
+  await visualize(mainArr, []);
   return mainArr;
 }
 async function mergeSortRecursion(
@@ -30,13 +20,11 @@ async function mergeSortRecursion(
   start,
   stop,
   visualArr,
-  setArray,
-  setMarkedIdx,
-  shouldRun,
-  delay
+  runController,
+  visualize
 ) {
   if (start === stop) return;
-  if (!shouldRun.current) return;
+  if (!runController.isOn) return;
   const pivot = Math.floor((start + stop) / 2);
   await mergeSortRecursion(
     copyArr,
@@ -44,10 +32,8 @@ async function mergeSortRecursion(
     start,
     pivot,
     visualArr,
-    setArray,
-    setMarkedIdx,
-    shouldRun,
-    delay
+    runController,
+    visualize
   );
   await mergeSortRecursion(
     copyArr,
@@ -55,10 +41,8 @@ async function mergeSortRecursion(
     pivot + 1,
     stop,
     visualArr,
-    setArray,
-    setMarkedIdx,
-    shouldRun,
-    delay
+    runController,
+    visualize
   );
   let i = start;
   let j = start;
@@ -75,10 +59,8 @@ async function mergeSortRecursion(
     }
     i++;
     //visualize
-    if (!shouldRun.current) return;
-    setArray([...visualArr]);
-    setMarkedIdx([i, j, k]);
-    await stopExecution(delay);
+    if (!runController.isOn) return;
+    await visualize(visualArr, [i, j, k]);
   }
   while (j <= pivot) {
     mainArr[i] = copyArr[j];
@@ -86,10 +68,8 @@ async function mergeSortRecursion(
     j++;
     i++;
     //visualize
-    if (!shouldRun.current) return;
-    setArray([...visualArr]);
-    setMarkedIdx([i, j, k]);
-    await stopExecution(delay);
+    if (!runController.isOn) return;
+    await visualize(visualArr, [i, j, k]);
   }
   while (k <= stop) {
     mainArr[i] = copyArr[k];
@@ -97,9 +77,7 @@ async function mergeSortRecursion(
     k++;
     i++;
     //visualize
-    if (!shouldRun.current) return;
-    setArray([...visualArr]);
-    setMarkedIdx([i, j, k]);
-    await stopExecution(delay);
+    if (!runController.isOn) return;
+    await visualize(visualArr, [i, j, k]);
   }
 }

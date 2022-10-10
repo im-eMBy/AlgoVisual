@@ -1,9 +1,10 @@
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { SortingContext } from "../../context/SortingContext";
+
+const RANGES = [9, 99, 999, 9999, 99999];
 
 export function RangeSelection() {
   const { arrayConfig, setRange } = useContext(SortingContext);
-  const ranges = useMemo(() => [9, 99, 999, 9999, 99999], []);
 
   const changeRange = (ev) => {
     setRange(Number(ev.target.value));
@@ -12,7 +13,7 @@ export function RangeSelection() {
   return (
     <div className="range-choice">
       <p>Range:</p>
-      {ranges.map((r, i) => (
+      {RANGES.map((r, i) => (
         <div key={i} className="range-option">
           <input
             id={r + "-range-radio"}

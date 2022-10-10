@@ -1,12 +1,4 @@
-import { stopExecution } from "../../utilis/stopExecution";
-
-export async function insertionSort(
-  array,
-  setArray,
-  setMarkedIdx,
-  shouldRun,
-  delay
-) {
+export async function insertionSort(array, runController, visualize) {
   const copyArray = [...array];
   for (let i = 1; i < copyArray.length; i++) {
     let curr = copyArray[i];
@@ -16,10 +8,8 @@ export async function insertionSort(
       copyArray[j + 1] = copyArray[j];
       copyArray[j] = curr;
       //visualize
-      if (!shouldRun.current) return;
-      setArray(copyArray);
-      setMarkedIdx([i, j]);
-      await stopExecution(delay);
+      if (!runController.isOn) return;
+      await visualize(copyArray, [i, j]);
     }
   }
   return copyArray;

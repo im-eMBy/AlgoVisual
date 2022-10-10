@@ -1,13 +1,6 @@
-import { stopExecution } from "../../utilis/stopExecution";
 import { arraySwap } from "../../utilis/arraySwap";
 
-export async function shellSort(
-  array,
-  setArray,
-  setMarkedIdx,
-  shouldRun,
-  delay
-) {
+export async function shellSort(array, runController, visualize) {
   const copyArray = [...array];
   let interval = Math.floor(array.length / 2);
   while (interval > 0) {
@@ -16,19 +9,15 @@ export async function shellSort(
       let elIdx = i;
       let el2Idx = i - interval;
       //visualize
-      if (!shouldRun.current) return;
-      setArray([...copyArray]);
-      setMarkedIdx([elIdx, el2Idx]);
-      await stopExecution(delay);
+      if (!runController.isOn) return;
+      await visualize(copyArray, [elIdx, el2Idx]);
       while (el < copyArray[el2Idx]) {
         arraySwap(elIdx, el2Idx, copyArray);
         elIdx -= interval;
         el2Idx -= interval;
         //visualize
-        if (!shouldRun.current) return;
-        setArray(copyArray);
-        setMarkedIdx([elIdx, el2Idx]);
-        await stopExecution(delay);
+        if (!runController.isOn) return;
+        await visualize(copyArray, [elIdx, el2Idx]);
       }
     }
     interval = Math.floor(interval / 2);
