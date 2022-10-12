@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useCallback, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SortingContext } from "../../context/SortingContext";
 import { SortingInterface } from "../../algo/sorting/SortingInterface";
 import { Board } from "./Board";
@@ -11,27 +11,6 @@ export function BoardController() {
   const [range, setRange] = useState(0);
   const [markedIdx, setMarkedIdx] = useState([]);
   const [sortingInterface, setSortingInterface] = useState();
-  const isSortingLocal = useRef(false);
-
-  const startSorting = useCallback(async () => {
-    const newSortingInterface = new SortingInterface(
-      [...arrayConfig.initialArray],
-      setArray,
-      setMarkedIdx,
-      1000 / dataSize,
-      algo
-    );
-    setSortingInterface(newSortingInterface);
-    isSortingLocal.current = true;
-    await newSortingInterface.start();
-    isSortingLocal.current = false;
-    setIsSorting(false);
-    setSortingInterface(null);
-  }, [algo, arrayConfig.initialArray, dataSize, setIsSorting]);
-
-  const stopSorting = useCallback(() => {
-    sortingInterface.stop();
-  }, [sortingInterface]);
 
   //update local array, when config in context changes
   useEffect(() => {
@@ -39,16 +18,28 @@ export function BoardController() {
     setDataSize(arrayConfig.dataSize);
     setRange(arrayConfig.range);
   }, [arrayConfig]);
-  //start sorting / stop sorting, based on context 'isSorting' and local 'isSortingLocal' variables
+  //start sorting when 'isSorting' in context change
   useEffect(() => {
-    if (!isSorting && isSortingLocal.current) {
-      stopSorting();
-      return;
-    }
-    if (isSorting && !isSortingLocal.current) {
-      startSorting();
-    }
-  }, [isSorting, startSorting, stopSorting]);
+    if (!isSorting) return;
+    const startSorting = async () => {
+      const newSortingInterface = new SortingInterface(
+        [...arrayConfig.initialArray],
+        setArray,
+        setMarkedIdx,
+        1000 / dataSize,
+        algo
+      );
+      setSortingInterface(newSortingInterface);
+      await newSortingInterface.start();
+      setIsSorting(false);
+    };
+    startSorting();
+  }, [algo, arrayConfig.initialArray, dataSize, isSorting, setIsSorting]);
+  //stop sorting
+  useEffect(() => {
+    if (isSorting) return;
+    sortingInterface?.stop();
+  }, [isSorting, sortingInterface]);
 
   return (
     <Board
