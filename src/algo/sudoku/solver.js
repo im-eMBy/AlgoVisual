@@ -44,7 +44,8 @@ export function solveSudoku(board) {
   solveSudokuRecursion(board, solutions);
   return solutions;
 }
-function solveSudokuRecursion(board, solutionsArr) {
+function solveSudokuRecursion(board, solutionsArr, complexity = { count: 0 }) {
+  if (complexity.count > 999999) return false;
   if (solutionsArr.length > 9) return false;
   const { y, x } = getFirstEmptyPosition(board);
   if (y === -1 && x === -1) {
@@ -56,9 +57,10 @@ function solveSudokuRecursion(board, solutionsArr) {
     return false;
   }
   for (const posNum of possibleNumbers) {
+    complexity.count++;
     const copyBoard = copy2dArray(board);
     copyBoard[y][x] = posNum;
-    const newBoard = solveSudokuRecursion(copyBoard, solutionsArr);
+    const newBoard = solveSudokuRecursion(copyBoard, solutionsArr, complexity);
     if (newBoard !== false) return newBoard;
   }
   return false;

@@ -16,12 +16,12 @@ export function Boards() {
   return (
     <div className="sudoku__boards">
       <div className="sudoku__board-container">
-        <p>Initial:</p>
+        <p className="sudoku__board-title">Initial:</p>
         <BoardUi board={initialBoard} isEditable={false} />
       </div>
       {solvedBoard !== null ? (
         <div className="sudoku__board-container">
-          <p>Solved:</p>
+          <p className="sudoku__board-title">Solved:</p>
           <BoardUi board={solvedBoard} isEditable={false} />
         </div>
       ) : null}

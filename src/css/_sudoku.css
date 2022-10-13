@@ -45,7 +45,7 @@
   align-items: center;
   gap: 5px;
 }
-.sudoku__board-container p {
+.sudoku__board-title {
   font-size: large;
 }
 .sudoku__board {
@@ -94,4 +94,8 @@ input::-webkit-inner-spin-button {
   -ms-flex-pack: center;
   justify-content: center;
   gap: 10px;
+}
+.sudoku__msg {
+  font-size: 14px;
+  padding: 5px 20px;
 }

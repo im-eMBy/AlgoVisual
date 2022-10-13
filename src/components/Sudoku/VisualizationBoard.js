@@ -43,7 +43,7 @@ export function VisualizationBoard() {
 
   return (
     <div className="sudoku__board-container">
-      <p>Visualization:</p>
+      <p className="sudoku__board-title">Visualization:</p>
       <BoardUi
         board={board}
         isEditable={false}

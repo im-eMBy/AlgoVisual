@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { solveSudoku } from "../../algo/sudoku/solver";
 import { sudokuInputValidation } from "../../algo/sudoku/validation";
 import { SudokuContext } from "../../context/SudokuContext";
 import { copy2dArray } from "../../utilis/copy2dArray";
@@ -29,7 +30,8 @@ const SAMPLE_BOARD = [
 ];
 
 export function InputBoard() {
-  const { setInitialBoard } = useContext(SudokuContext);
+  const { setInitialBoard, setSolutionsCounter, setSolvedBoard } =
+    useContext(SudokuContext);
   const [markedFields, setMarkedFields] = useState([]);
   const [board, setBoard] = useState(copy2dArray(EMPTY_BOARD));
   const [warnMsg, setWarnMsg] = useState(null);
@@ -41,7 +43,16 @@ export function InputBoard() {
       );
       return;
     }
+    const solutions = solveSudoku(board);
+    if (solutions.length === 0) {
+      setWarnMsg(
+        "Sorry, entered sudoku has 0 solutions or is too hard to solve, we recommend providing at least 19 clues"
+      );
+      return;
+    }
     setInitialBoard(board);
+    setSolvedBoard(solutions[0]);
+    setSolutionsCounter(solutions.length);
   };
   const resetBoard = () => {
     setWarnMsg(null);
@@ -66,14 +77,14 @@ export function InputBoard() {
 
   return (
     <div className="sudoku__board-container">
-      <p>Input board:</p>
+      <p className="sudoku__board-title">Input board:</p>
       <BoardUi
         board={board}
         isEditable={true}
         editField={editField}
         markedFields={markedFields}
       />
-      <p>{warnMsg}</p>
+      <p className="sudoku__msg">{warnMsg}</p>
       <div className="sudoku__input-buttons">
         <button className="prime-button" onClick={solve}>
           Solve

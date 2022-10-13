@@ -1,5 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { solveSudoku } from "../algo/sudoku/solver";
+import React, { useMemo, useState } from "react";
 
 export const SudokuContext = React.createContext();
 
@@ -9,14 +8,6 @@ export function SudokuContextProvider({ children }) {
   const [solutionsCounter, setSolutionsCounter] = useState(0);
   const [isVisual, setIsVisual] = useState(false);
 
-  useEffect(() => {
-    if (initialBoard !== null) {
-      const solutions = solveSudoku(initialBoard);
-      setSolvedBoard(solutions[0]);
-      setSolutionsCounter(solutions.length);
-    }
-  }, [initialBoard]);
-
   const ctx = useMemo(() => {
     return {
       initialBoard,
@@ -24,6 +15,7 @@ export function SudokuContextProvider({ children }) {
       solvedBoard,
       setSolvedBoard,
       solutionsCounter,
+      setSolutionsCounter,
       isVisual,
       setIsVisual,
     };
